@@ -2,129 +2,137 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Akanksha 🎉</title>
+<title>Happy Birthday</title>
 
 <style>
 body {
   margin: 0;
   overflow: hidden;
-  background: black;
-  color: white;
-  text-align: center;
   font-family: Arial;
+  text-align: center;
+  color: white;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #42e695);
+  background-size: 600% 600%;
+  animation: bgMove 10s infinite alternate;
 }
 
-/* Burst dots */
-.dot {
+@keyframes bgMove {
+  0% { background-position: 0% }
+  100% { background-position: 100% }
+}
+
+/* ⭐ Stars */
+.star {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: lime;
-  border-radius: 50%;
-  animation: explode 1s forwards;
+  width: 3px;
+  height: 3px;
+  background: white;
+  animation: twinkle 2s infinite;
 }
 
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity: 0;
-  }
+@keyframes twinkle {
+  0%,100% {opacity: 0.2;}
+  50% {opacity: 1;}
 }
 
-/* Tree */
+/* 🌳 Tree */
 .tree {
   position: absolute;
-  bottom: -200px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 120px;
-  background: green;
-  border-radius: 20px;
-  opacity: 0;
-  animation: grow 2s forwards 1s;
+}
+
+.trunk {
+  width: 20px;
+  height: 0;
+  background: brown;
+  margin: auto;
+  animation: grow 2s forwards;
 }
 
 @keyframes grow {
-  to {
-    bottom: 0;
-    opacity: 1;
-  }
+  to { height: 120px; }
 }
 
-/* Text */
-.text {
+.leaves {
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 100px solid green;
+  margin: auto;
   opacity: 0;
-  margin-top: 100px;
-  animation: fadeIn 2s forwards 3s;
+  animation: showLeaves 2s 2s forwards, sway 2s infinite alternate;
 }
 
-@keyframes fadeIn {
+@keyframes showLeaves {
   to { opacity: 1; }
 }
 
+@keyframes sway {
+  from { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+
+/* 🎉 Text */
 h1 {
-  font-size: 45px;
-  color: pink;
+  margin-top: 80px;
+  font-size: 40px;
 }
 
 p {
   font-size: 18px;
-  width: 70%;
-  margin: auto;
-  color: #ddd;
 }
 
+/* 📚 Buttons */
 .btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: pink;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
 }
 </style>
 </head>
 
 <body>
-<audio auto play loop>  
-  <source src="music.mp3" type="audio/mpeg">
+
+<!-- 🎵 MUSIC -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mp3">
 </audio>
-  
-<div id="burst"></div>
 
-<div class="tree"></div>
+<h1>✨ Happy Birthday Akanksha Ji ✨</h1>
 
-<div class="text">
-  <h1>🎉 Happy Birthday Akanksha Ji 🎉</h1>
-  <p>
-    Wishing you endless happiness, smiles, and success ✨  
-    You deserve all the good things in life 💖  
-    Stay खुश, stay amazing 🌸
-  </p>
+<p>Stay खुश, stay amazing 💖<br>
+You deserve happiness always 🌸</p>
 
-  <a href="book.pdf" download>
-    <button class="btn">Your Gift 🎁</button>
-  </a>
+<!-- 📚 DOWNLOADS -->
+<div>
+  <a href="book1.pdf" download class="btn">Book 1</a>
+  <a href="book2.pdf" download class="btn">Book 2</a>
+  <a href="book3.pdf" download class="btn">Book 3</a>
+</div>
+
+<!-- 🌳 TREE -->
+<div class="tree">
+  <div class="trunk"></div>
+  <div class="leaves"></div>
 </div>
 
 <script>
-const burst = document.getElementById("burst");
-
-for(let i=0; i<80; i++){
-  let d = document.createElement("div");
-  d.className = "dot";
-
-  let x = (Math.random()*400 - 200) + "px";
-  let y = (Math.random()*400 - 200) + "px";
-
-  d.style.setProperty('--x', x);
-  d.style.setProperty('--y', y);
-
-  d.style.left = "50%";
-  d.style.top = "50%";
-
-  burst.appendChild(d);
+// ⭐ Stars generate
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+  document.body.appendChild(star);
 }
 </script>
 
